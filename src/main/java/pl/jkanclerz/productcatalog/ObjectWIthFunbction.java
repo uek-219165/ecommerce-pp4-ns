@@ -1,4 +1,4 @@
-package productcatalog;
+package pl.jkanclerz.productcatalog;
 
 public class ObjectWIthFunbction {
     public static void doSomething() {
