@@ -9,6 +9,14 @@ public class ProductData {
     private String imageUrl;
     private boolean online;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public ProductData(String id, String name) {
         this.id = id;
         this.name = name;
