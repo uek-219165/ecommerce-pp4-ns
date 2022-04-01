@@ -41,4 +41,8 @@ public class ProductData {
     public void publish() {
         this.online = true;
     }
+
+    public String getId() {
+        return id;
+    }
 }
