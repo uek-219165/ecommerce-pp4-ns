@@ -7,44 +7,46 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ProductCatalog {
-    Map<String, ProductData> products;
+    ProductStorage productStorage;
 
     public ProductCatalog() {
-        this.products = new HashMap<>();
+        this.productStorage = new ProductStorage();
     }
+
     public String addProduct(String id, String name) {
         ProductData productData = new ProductData(id, name);
-        products.put(id, productData);
+        productStorage.save(productData);
         return id;
     }
+
     public void publish(String productId) {
-        ProductData loaded = products.get(productId);
+        ProductData loaded = productStorage.loadById(productId);
 
         if (loaded.getPrice() == null) {
             throw new CantPublishProductException();
         }
 
         loaded.publish();
+        productStorage.save(loaded);
     }
 
     public List<ProductData> allPublishedProducts() {
-        return products.values()
-                .stream()
-                .filter(item -> item.isOnline())
-                .collect(Collectors.toList());
+        return productStorage.allPublishedProducts();
     }
 
     public void changePrice(String productId, BigDecimal newPrice) {
-        ProductData loaded = findById(productId);
-        loaded.changePrice(newPrice);
+            ProductData loaded = productStorage.loadById(productId);
+            loaded.changePrice(newPrice);
+            productStorage.save(loaded);
     }
 
     public ProductData findById(String productId) {
-        return products.get(productId);
+        return productStorage.loadById(productId);
     }
 
     public void assignImage(String productId, String imageUrl) {
-        ProductData loaded = findById(productId);
+        ProductData loaded = productStorage.loadById(productId);
         loaded.assignImage(imageUrl);
+        productStorage.save(loaded);
     }
 }
