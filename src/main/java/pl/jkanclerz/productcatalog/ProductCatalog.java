@@ -1,16 +1,13 @@
 package pl.jkanclerz.productcatalog;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ProductCatalog {
     ProductStorage productStorage;
 
-    public ProductCatalog() {
-        this.productStorage = new ProductStorage();
+    public ProductCatalog(ProductStorage productStorage) {
+        this.productStorage = productStorage;
     }
 
     public String addProduct(String id, String name) {
