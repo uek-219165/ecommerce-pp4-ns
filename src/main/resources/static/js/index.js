@@ -5,11 +5,11 @@ const getProducts = () => {
 
 const createProductHtmlElement = (product) => {
     const template = `
-        <li>
-            <h4>${product.name}</h4>
-            <img src="${product.imageUrl}"/>
-            <span>${product.price}</span>
-            <button data-product-id="${product.id}" >Add to cart</button>
+        <li class="product">
+            <img class="product__image" src="${product.imageUrl}" alt="..."/>
+            <h4 class="product__heading">${product.name}</h4>
+            <span class="product__price">${product.price}</span>
+            <button class="btn product__btn" data-product-id="${product.id}" >Add to cart</button>
         </li>
     `;
 
